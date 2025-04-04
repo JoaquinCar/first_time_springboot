@@ -1,9 +1,22 @@
 package com.example.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.Date;
-
+@Entity // This annotation specifies that the class is an entity and is mapped to a database table
+@Table // This annotation specifies the name of the table in the database
 public class student {
+    @Id // This annotation specifies the primary key of the entity
+    @SequenceGenerator(  // This annotation specifies the generator for the primary key
+            name = "student_sequence", // The name of the sequence generator
+            sequenceName = "student_sequence", // The name of the sequence in the database
+            allocationSize = 1 // The number of values to allocate at a time
+    )
+    @GeneratedValue( // This annotation specifies the strategy for generating the primary key
+            strategy = GenerationType.SEQUENCE, // The strategy for generating the primary key
+            generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private String email;
@@ -80,12 +93,6 @@ public class student {
 
     @Override
     public String toString() {
-        return "student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
-                '}';
+        return STR."student{id=\{id}, name='\{name}', email='\{email}', dob=\{dob}, age=\{age}}";
     }
 }
