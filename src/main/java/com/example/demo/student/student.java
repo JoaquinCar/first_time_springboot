@@ -2,7 +2,9 @@ package com.example.demo.student;
 
 import jakarta.persistence.*;
 
+
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 @Entity // This annotation specifies that the class is an entity and is mapped to a database table
 @Table // This annotation specifies the name of the table in the database
@@ -21,7 +23,9 @@ public class student {
     private String name;
     private String email;
     private LocalDate dob; // dob = date of birth
-    private Integer age;
+
+    @Transient // This annotation specifies that the field is not to be persisted in the database
+    private Integer age; //no tiene que ser columna en nuestra base de datos
 
 
 
@@ -31,23 +35,23 @@ public class student {
     public student(Long id,
                    String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob
+                   ) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
+
     }
 
     public student(String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob
+                   ) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
+
     }
     // Getters
     public Long getId() {
@@ -67,7 +71,7 @@ public class student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(dob, LocalDate.now()).getYears();
     }
 
     // Setters

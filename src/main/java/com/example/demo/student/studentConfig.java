@@ -12,21 +12,20 @@ import java.util.List;
 public class studentConfig {
     // This class is used to configure the student service and repository
     // It is annotated with @Configuration to indicate that it is a configuration class
-    @Bean
+    @Bean // This annotation indicates that this method will return a bean that should be managed by the Spring container
     CommandLineRunner commandLineRunner(studentRepository repository) {
          // This method is used to run some code at startup
         return args -> {
             student kino = new  student(
                     "Kino",
                     "kino@gmail.com",
-                    LocalDate.of(2000, Month.JUNE,10),
-                    18);
+                    LocalDate.of(2000, Month.JUNE,10));
 
             student jorge = new  student(
                     "Jorge",
                     "Flowers@gmail.com",
-                    LocalDate.of(2006, Month.MAY,10),
-                    23
+                    LocalDate.of(2006, Month.MAY,10)
+
             );
             repository.saveAll(
                     List.of(kino, jorge) // This method saves the list of students to the database

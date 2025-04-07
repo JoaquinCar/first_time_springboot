@@ -4,8 +4,6 @@ package com.example.demo.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @Service // This annotation is used to let Spring know that this class is a service class.
@@ -21,9 +19,12 @@ public class studentService {
     }
 
 
-
     public List<student> getStudents() {
-        return studentRepository.findAll();
+        return null;
+    }
+
+    public void addNewStudent(student student) {
+        System.out.println("student " + student + " was added");
     }
 }
 
